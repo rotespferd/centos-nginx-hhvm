@@ -6,6 +6,17 @@ MAINTAINER Marian Sievers
 RUN yum install -y epel-release
 RUN yum install -y nginx
 
+# Clean up YUM when done.
+RUN yum clean all
+
+# Expose http-port
+EXPOSE 80
+
+# Run nginx
+CMD ["nginx", "-g", "daemon off;"]
+
+
+# ------------------------------------------------------------------------------
 # Install packages
 #RUN apt-get update
 #RUN apt-get install -y php5-fpm
