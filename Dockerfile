@@ -9,6 +9,9 @@ RUN yum install -y nginx
 # Clean up YUM when done.
 RUN yum clean all
 
+# Add config
+ADD conf/default.conf /etc/nginx/conf.d/default.conf
+
 # Expose http-port
 EXPOSE 80
 
