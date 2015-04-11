@@ -1,10 +1,10 @@
-FROM centos7
+FROM centos:centos7
 
 MAINTAINER Marian Sievers
 
 # Install nginx
-RUN yum install epel-release
-RUN yum install nginx
+RUN yum install -y epel-release
+RUN yum install -y nginx
 
 # Install packages
 #RUN apt-get update
