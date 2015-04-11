@@ -12,6 +12,9 @@ RUN yum clean all
 # Add config
 ADD conf/default.conf /etc/nginx/conf.d/default.conf
 
+# Expose volumes
+VOLUME ["/var/www", "/etc/nginx/conf.d"]
+
 # Expose http-port
 EXPOSE 80
 
