@@ -2,12 +2,16 @@ FROM centos:centos7
 
 MAINTAINER Marian Sievers
 
-# Install nginx
+# Do some preparation
+RUN yum install -y wget
 RUN yum install -y epel-release
-RUN yum install -y nginx
 
-# Clean up YUM when done.
-RUN yum clean all
+#####################
+### Install nginx ###
+#####################
+
+# Install nginx
+RUN yum install -y nginx
 
 # Add config
 ADD conf/default.conf /etc/nginx/conf.d/default.conf
@@ -21,7 +25,24 @@ EXPOSE 80
 # Run nginx
 CMD ["nginx", "-g", "daemon off;"]
 
+####################
+### Install hhvm ###
+####################
 
+# Add hhvm repo
+RUN wget https://copr.fedoraproject.org/coprs/no1youknowz/hhvm-repo/repo/epel-7/no1youknowz-hhvm-repo-epel-7.repo -O /etc/yum.repos.d/no1youknowz-hhvm-repo-epel-7.repo
+
+# Install hhvm
+RUN yum install -y hhvm
+
+
+# Do some cleanup
+
+# Clean up YUM when done.
+RUN yum clean all
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 # Install packages
 #RUN apt-get update
