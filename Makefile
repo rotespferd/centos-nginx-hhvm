@@ -22,7 +22,7 @@ run: clean
 	docker run -d $(DOCKER_RUN_COMMON)
 
 bash: clean
-	mkdir -p $(DATA_DIR)
+	# mkdir -p $(DATA_DIR)
 	docker run -t -i $(DOCKER_RUN_COMMON) /bin/bash
 
 # Removes existing containers.
